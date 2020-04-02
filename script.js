@@ -8,8 +8,10 @@ const game = function() {
     const number = Math.floor(Math.random() * 100) + 1;
     const iteration = function() {
         console.log(number);
-        let guess = +prompt("Угадай число от 1 до 100");
-        if (!isNumber(guess)) {
+        let guess = prompt("Угадай число от 1 до 100");
+        if (guess === null) {
+            return;
+        } else if (!isNumber(guess)) {
             alert("Введи число!");
             iteration();
         } else if (guess < number) {
@@ -18,8 +20,6 @@ const game = function() {
         } else if (guess > number) {
             alert("Загаданное число меньше");
             iteration();
-        } else if (guess === null) {
-            return;
         }
     };
     return iteration;
