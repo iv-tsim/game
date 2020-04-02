@@ -6,11 +6,10 @@ const isNumber = function(n) {
 
 const game = function() {
     let number = Math.floor(Math.random() * 100) + 1;
-    alert(number);
     let attempts = 10;
     const iteration = function() {
         console.log(number);
-        let guess = +prompt("Угадай число от 1 до 100");
+        let guess = prompt("Угадай число от 1 до 100");
         attempts--;
         if (attempts === 0) {
             if (confirm("Попытки закончились, хотите сыграть еще?")) {
@@ -22,7 +21,10 @@ const game = function() {
                 return;
             }
         }
-        if (!isNumber(guess)) {
+        if (guess === null) {
+            alert("Жаль, мы могли провести так много времени...");
+            return;
+        } else if (!isNumber(guess)) {
             alert("Введи число!");
             iteration();
         } else if (guess < number) {
@@ -40,14 +42,13 @@ const game = function() {
                 alert("Жаль, мы могли провести так много времени...");
                 return;
             }
-        } else if (guess === null) {
-            alert("Жаль, мы могли провести так много времени...");
-            return;
         }
     };
     return iteration;
 };
 
 const start = game();
+
+console.dir(start);
 
 start();
